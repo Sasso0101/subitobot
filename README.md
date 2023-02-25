@@ -6,11 +6,6 @@ A Docker container that checks for new listings on [subito.it](https://www.subit
 
 Ready to use images are published on Github packages.
 
-### Build from source
-Clone the repository and run:
-```
-docker build -t subitobot .
-```
 ### Deploy
 Download the `docker-compose.yaml` file from the repository:
 ```
@@ -36,3 +31,10 @@ docker run subitobot
 ```
 
 The Docker container checks for new listings just once and then stops. If you want to check periodically for new listings you use `cron` or similar tools to run the previous command on a schedule.
+
+### Build from source
+Clone the repository and run:
+```
+docker build -t subitobot .
+docker-compose up
+```
