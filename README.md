@@ -5,7 +5,7 @@
 A Docker container that checks for new listings on [subito.it](https://www.subito.it) and sends a Telegram notification every time something new gets published.
 
 ### How to use
-Download the docker-compose.yaml file from the repository:
+Download the `docker-compose.yaml` file from the repository:
 ```
 mkdir subitobot
 wget https://raw.githubusercontent.com/Sasso0101/coronavirus-updater/master/docker-compose.yml
