@@ -10,7 +10,7 @@ Ready to use images are published on Github packages.
 Download the `docker-compose.yaml` file from the repository:
 ```
 mkdir subitobot
-wget https://raw.githubusercontent.com/Sasso0101/coronavirus-updater/master/docker-compose.yaml
+wget https://raw.githubusercontent.com/Sasso0101/subitobot/master/docker-compose.yaml
 ```
 Create a file named `.env` in the project's directory with the following content (without quotes):
 ```
