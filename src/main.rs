@@ -8,8 +8,8 @@ mod notifications;
 #[tokio::main]
 async fn main() {
     // If file with last known listings does not exist generate one with current latest listing for every keyword
-    if File::open("lastUpdated.txt").is_err() {
-        println!("Creating lastUpdated.txt...");
+    if File::open("data/last_updated.txt").is_err() {
+        println!("Creating last_updated.txt...");
         let mut keywords = HashMap::from([
             (String::from("commodore"), String::new()),
             (String::from("atari"), String::new()),
@@ -28,6 +28,7 @@ async fn main() {
 
     let listings = get_all_new_listings().await;
     println!("{:#?}", listings);
+    println!("ciao!");
     let messages = create_messages(listings);
     send_messages(messages).await;
 }

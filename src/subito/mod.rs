@@ -26,7 +26,7 @@ pub mod subito {
     }
     
     fn get_all_last_listings() -> HashMap<String, String> {
-        let file = fs::read_to_string("lastUpdated.txt");
+        let file = fs::read_to_string("data/last_updated.txt");
         let mut listings = HashMap::new();
         for line in file.unwrap().lines() {
             let mut line = line.split(" ").map(|f| String::from(f));
@@ -36,7 +36,7 @@ pub mod subito {
     }
 
     pub fn update_last_listings(all_last_listings: HashMap<String, String>) {
-        let mut file = File::create("lastUpdated.txt").unwrap();
+        let mut file = File::create("data/last_updated.txt").unwrap();
         let mut text = String::new();
         for (keyword, last_listing) in all_last_listings {
             text = format!("{}{} {}\n", text.as_str(), keyword, last_listing);

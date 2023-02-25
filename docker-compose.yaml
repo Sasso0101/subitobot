@@ -1,0 +1,9 @@
+version: "3.3"
+services:
+  subitobot:
+    image: subitobot
+    container_name: subitobot
+    restart: "no"
+    env_file: .env
+    volumes:
+       - ./data:/subitobot/data

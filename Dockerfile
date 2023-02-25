@@ -4,9 +4,12 @@ RUN update-ca-certificates
 
 WORKDIR /subitobot
 COPY . .
-RUN cargo build --release
+RUN --mount=type=cache,target=/usr/local/cargo/registry --mount=type=cache,target=/subitobot/target \
+cargo build --release && \
+    mv /subitobot/target/release/subitobot /subitobot
 
-FROM debian:bullseye-slim
+FROM gcr.io/distroless/cc
 WORKDIR /subitobot
-COPY --from=builder /subitobot/target/release/subitobot ./
+VOLUME /subitobot/data
+COPY --from=builder /subitobot/subitobot ./
 CMD ["/subitobot/subitobot"]
