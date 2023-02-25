@@ -4,7 +4,7 @@
 
 A Docker container that checks for new listings on [subito.it](https://www.subito.it) and sends a Telegram notification every time something new gets published.
 
-Ready to use images are published on Github packages.
+Ready to use images are published on [Github packages](https://github.com/Sasso0101/subitobot/pkgs/container/subitobot).
 
 ### Deploy
 Download the `docker-compose.yaml` file from the repository:
@@ -12,7 +12,7 @@ Download the `docker-compose.yaml` file from the repository:
 mkdir subitobot
 wget https://raw.githubusercontent.com/Sasso0101/subitobot/master/docker-compose.yaml
 ```
-Create a file named `.env` in the project's directory with the following content (without quotes):
+Create a file named `.env` in the project's directory with the following entries (change the relevant parts and remove the quotes):
 ```
 KEYWORDS="A comma separated list of keywords you want to track"
 BOT_TOKEN="Your telegram bot token"
@@ -30,11 +30,10 @@ Run the container! 🚀
 docker start subitobot
 ```
 
-The Docker container checks for new listings just once and then stops. If you want to check periodically for new listings you use `cron` or similar tools to run the previous command on a schedule.
+The Docker container checks for new listings just once and then stops. If you want to check periodically for new listings you can use `cron` or similar tools to run the previous command on a schedule.
 
 ### Build from source
 Clone the repository and run:
 ```
 docker build -t subitobot .
-docker compose up
 ```
