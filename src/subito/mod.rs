@@ -1,8 +1,7 @@
 pub mod data;
 
 pub mod subito {
-    use std::{collections::HashMap, fs::{self, File}, io::Write};
-
+    use crate::config::config::{get_all_last_listings, update_last_listings};
     use super::data::data::{Search, Listing, Check};
 
     pub async fn get_listings(keyword: &str, lim: i32) -> Vec<Listing> {
@@ -25,28 +24,9 @@ pub mod subito {
         }
     }
     
-    fn get_all_last_listings() -> HashMap<String, String> {
-        let file = fs::read_to_string("data/last_updated.txt");
-        let mut listings = HashMap::new();
-        for line in file.unwrap().lines() {
-            let mut line = line.split(" ").map(|f| String::from(f));
-            listings.insert(line.next().unwrap(), line.next().unwrap());
-        }
-        listings
-    }
-
-    pub fn update_last_listings(all_last_listings: HashMap<String, String>) {
-        let mut file = File::create("data/last_updated.txt").unwrap();
-        let mut text = String::new();
-        for (keyword, last_listing) in all_last_listings {
-            text = format!("{}{} {}\n", text.as_str(), keyword, last_listing);
-        }
-        file.write_all(text.as_bytes()).unwrap();
-    }
-
     pub async fn get_all_new_listings() -> Vec<Listing> {
         let mut all_new_listings = Vec::new();
-        let mut all_last_listings = get_all_last_listings();
+        let mut all_last_listings = get_all_last_listings().await;
         for (keyword, last_listing) in &mut all_last_listings {
             let new_listings = check_new_listings(&keyword, &last_listing).await;
             if new_listings == 0 {
@@ -57,7 +37,7 @@ pub mod subito {
                 all_new_listings.append(new_listings);
             }
         }
-        update_last_listings(all_last_listings);
+        update_last_listings(&all_last_listings);
         all_new_listings
     }
 }

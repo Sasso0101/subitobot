@@ -10,12 +10,11 @@ pub mod notifications {
         let url = format!("https://api.telegram.org/{}/sendMessage", env::var("BOT_TOKEN").unwrap());
         let client = reqwest::Client::new();
         let text = serde_json::to_string(&m).unwrap();
-        let res = client.post(url)
+        client.post(url)
         .header("Content-Type", "application/json")
         .body(text)
         .send()
         .await.unwrap();
-        println!("{}", res.text().await.unwrap());
     }
 
     pub async fn send_messages(messages: Vec<Message>) {
@@ -35,7 +34,7 @@ pub mod notifications {
             messages.push(Message {
                 chat_id: env::var("CHAT_ID").unwrap(),
                 text: format!(
-                    "<a href=\"{}?rule=images-auto\">📣</a> <b>{}</b>\n📌 {} ({}) 🕓 {}\n💵 Prezzo: {}\n\n{}\n\n<a href=\"{}\">➡️ Vedi l\'inserzione ⬅️</a>",
+                    "<a href=\"{}?rule=images-auto\">📣</a> <b>{}</b>\n📍 {} ({}) 🕓 {}\n💵 Prezzo: {}\n\n{}\n\n<a href=\"{}\">➡️ Vedi l\'inserzione ⬅️</a>",
                     listing.images.first().unwrap().cdn_base_url,
                     listing.subject,
                     listing.geo.town.value,
