@@ -21,13 +21,13 @@ CHAT_ID="The telegram ID of the user you want to send the notifications to"
 Run the following commands:
 ```
 mkdir data
-docker-compose create
+docker compose up
 ```
 The Docker container will use the `./data` folder to store it's files (if you want to change this behavior modify the `docker-compose.yaml` file).
 
 Run the container! 🚀
 ```
-docker run subitobot
+docker start subitobot
 ```
 
 The Docker container checks for new listings just once and then stops. If you want to check periodically for new listings you use `cron` or similar tools to run the previous command on a schedule.
@@ -36,5 +36,5 @@ The Docker container checks for new listings just once and then stops. If you wa
 Clone the repository and run:
 ```
 docker build -t subitobot .
-docker-compose up
+docker compose up
 ```
