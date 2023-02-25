@@ -1,7 +1,8 @@
 version: "3.3"
 services:
   subitobot:
-    image: subitobot
+    platform: linux/amd64
+    image: ghcr.io/sasso0101/subitobot:latest
     container_name: subitobot
     restart: "no"
     env_file: .env
