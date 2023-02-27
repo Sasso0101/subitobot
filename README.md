@@ -23,7 +23,7 @@ Run the following commands:
 mkdir data
 docker compose up
 ```
-The Docker container will use the `./data` folder to store it's files (if you want to change this behavior modify the `docker-compose.yaml` file).
+The Docker container will use the `./data` folder to store its files (if you want to change this behavior modify the `docker-compose.yaml` file).
 
 Run the container! 🚀
 ```
