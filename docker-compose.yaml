@@ -5,6 +5,5 @@ services:
     image: ghcr.io/sasso0101/subitobot:latest
     container_name: subitobot
     restart: "no"
-    env_file: .env
     volumes:
        - ./data:/subitobot/data
