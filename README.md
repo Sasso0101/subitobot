@@ -4,7 +4,7 @@
 
 Subitobot is a Telegram bot designed to notify a user about new listings posted on [subito.it](https://www.subito.it).
 
-The bot is distributed as a Docker image, which is published on [Github packages](https://github.com/Sasso0101/subitobot/pkgs/container/subitobot).
+The bot is written in Rust and distributed as a Docker image published on [Github packages](https://github.com/Sasso0101/subitobot/pkgs/container/subitobot).
 
 ### Installation
 Download the `docker-compose.yaml` file from the repository:
