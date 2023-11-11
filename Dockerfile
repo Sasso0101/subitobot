@@ -1,17 +1,12 @@
-FROM lukemathwalker/cargo-chef:latest-rust-1.70.0-alpine3.18 as chef
+FROM rust:1.70.0-slim-bullseye as builder
 WORKDIR subitobot
-
-FROM chef AS planner
 COPY . .
-RUN cargo chef prepare --recipe-path recipe.json
+RUN --mount=type=cache,target=/usr/local/cargo/registry --mount=type=cache,target=/subitobot/target \
+cargo build --release && \
+    mv /subitobot/target/release/subitobot /subitobot
 
-FROM chef AS builder
-COPY --from=planner /subitobot/recipe.json recipe.json
-RUN cargo chef cook --release --recipe-path recipe.json
-COPY . .
-RUN cargo build --release
-
-FROM scratch
-COPY --from=builder /subitobot/target/release/subitobot /subitobot/subitobot
-COPY . /subitobot/data
+FROM gcr.io/distroless/cc-debian11
+WORKDIR /subitobot
+VOLUME /subitobot/data
+COPY --from=builder /subitobot/subitobot ./subitobot/subitobot
 CMD ["./subitobot/subitobot"]
