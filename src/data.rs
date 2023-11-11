@@ -1,6 +1,6 @@
 pub mod data {
 
-    use chrono::{DateTime, Utc};
+    use chrono::NaiveDateTime;
     use serde::{Serialize, Deserialize};
 
     use super::date_format;
@@ -36,9 +36,9 @@ pub mod data {
     #[derive(Serialize, Deserialize, Debug, Default)]
     pub struct Dates {
         #[serde(with = "date_format")]
-        pub display: DateTime<Utc>,
+        pub display: NaiveDateTime,
         #[serde(with = "date_format")]
-        expiration: DateTime<Utc>,
+        expiration: NaiveDateTime,
     }
 
     #[derive(Serialize, Deserialize, Debug, Default)]
@@ -86,13 +86,13 @@ pub mod data {
 }
 
 pub mod date_format {
-    use chrono::{DateTime, Utc, TimeZone};
+    use chrono::NaiveDateTime;
     use serde::{self, Deserialize, Serializer, Deserializer};
 
     const FORMAT: &'static str = "%Y-%m-%d %H:%M:%S";
 
     pub fn serialize<S>(
-        date: &DateTime<Utc>,
+        date: &NaiveDateTime,
         serializer: S,
     ) -> Result<S::Ok, S::Error>
     where
@@ -104,11 +104,11 @@ pub mod date_format {
 
     pub fn deserialize<'de, D>(
         deserializer: D,
-    ) -> Result<DateTime<Utc>, D::Error>
+    ) -> Result<NaiveDateTime, D::Error>
     where
         D: Deserializer<'de>,
     {
         let s = String::deserialize(deserializer)?;
-        Utc.datetime_from_str(&s, FORMAT).map_err(serde::de::Error::custom)
+        NaiveDateTime::parse_from_str(&s, FORMAT).map_err(serde::de::Error::custom)
     }
 }
