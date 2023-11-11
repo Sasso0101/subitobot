@@ -16,7 +16,7 @@ Edit the `config.toml` file located in the `data/` directory with your telegram 
 #### Description of the fields
 - `keyword` (string): name of the item
 - `region` (array of integers): restrict the search to specific regions. The regions must be encoded using [these codes](docs/regions.md). Arrays are specified as follows: `[x, y, z]`.
-- `province` (integer): restrict the search to a province. The province must be encoded using [these codes](docs/provinces.md). When used `region` must be specified too.
+- `province` (integer): restrict the search to a province. The province must be encoded using [these codes](docs/provinces.md). If this field is used, then also `region` must be specified.
 - `city` (integer): restrict the search to a city. The city must be encoded using its ISTAT code (a list can be found [here](https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php)).
 - `category` (integer): restrict the search to a category. The category must be encoded using [these codes](docs/categories.md).
 - `search_only_title` (boolean): restrict the search to the title of the postings only. `false` by default.
