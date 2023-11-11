@@ -1,0 +1,14 @@
+chat_id = "your_chat_id"
+bot_token = "your_bot_token"
+
+[[item]]
+keyword = "table"
+region = [4, 6]
+category = 14
+
+[[item]]
+keyword = "chair"
+region = [11]
+province = 4
+city = "058091"
+search_only_title = true

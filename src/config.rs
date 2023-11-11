@@ -2,7 +2,7 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use toml;
 
-const CONFIG_PATH: &str = "config.toml";
+const CONFIG_PATH: &str = "data/config.toml";
 
 #[derive(Serialize, Deserialize)]
 pub struct Config {
