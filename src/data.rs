@@ -8,15 +8,15 @@ pub mod data {
     #[derive(Serialize, Deserialize, Debug)]
     pub struct Check {
         pub newads: bool,
-        pub count: i32
+        pub count: u8
     }
 
     #[derive(Serialize, Deserialize, Debug)]
-    pub struct Search {
+    pub struct SearchResults {
         pub ads: Vec<Listing>
     }
 
-    #[derive(Serialize, Deserialize, Debug)]
+    #[derive(Serialize, Deserialize, Debug, Default)]
     pub struct Listing {
         pub urn: String,
         pub subject: String,
