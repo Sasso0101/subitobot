@@ -24,7 +24,7 @@ Edit the `data/config.toml` file located in the project's directory with your te
 Run the following commands:
 ```
 mkdir data
-docker compose up
+docker compose up -d
 ```
 Start the container! 🚀
 ```
