@@ -20,7 +20,7 @@ Edit the `config.toml` file located in the `data` directory with your telegram u
 - `city` (integer): restrict the search to a city. The city must be encoded using its ISTAT code (a list can be found [here](https://dait.interno.gov.it/territorio-e-autonomie-locali/sut/elenco_codici_comuni.php)).
 - `category` (integer): restrict the search to a category. The category must be encoded using [these codes](docs/categories.md).
 - `search_only_title` (boolean): restrict the search to the title of the postings only. `false` by default.
-- `min_price` (integer): restrict the search to items more above or equal to this value.
+- `min_price` (integer): restrict the search to items priced more or equal to this value.
 - `max_price` (integer): restrict the search to items priced less or equal to this value.
 
 Run the following commands:
