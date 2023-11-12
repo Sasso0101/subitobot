@@ -25,6 +25,10 @@ pub struct Search {
     pub category: Option<u8>,
     #[serde(default)]
     pub last_listing: Option<String>,
+    #[serde(default)]
+    pub min_price: Option<i32>,
+    #[serde(default)]
+    pub max_price: Option<i32>
 }
 
 pub fn get_config() -> Config {

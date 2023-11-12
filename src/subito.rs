@@ -60,7 +60,13 @@ pub mod subito {
             query = format!("{}&c={}", query, category);
         }
         if let Some(search_only_title) = search.search_only_title {
-            query = format!("{}&qso={}", query,search_only_title);
+            query = format!("{}&qso={}", query, search_only_title);
+        }
+        if let Some(min_price) = search.min_price {
+            query = format!("{}&ps={}", query, min_price);
+        }
+        if let Some(max_price) = search.max_price {
+            query = format!("{}&pe={}", query, max_price);
         }
         query
     }
