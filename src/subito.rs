@@ -14,13 +14,33 @@ pub mod subito {
         }
     }
 
+    async fn check_listing_exists(listing: &String) -> bool {
+        let result = reqwest::get(
+            format!(
+                "{}?urn={}", 
+                ITEMS_URL, 
+                listing
+            )
+        ).await.unwrap().text().await.unwrap();
+        let result: SearchResults = serde_json::from_str(&result).unwrap();
+        return !result.ads.is_empty();
+    }
+
+    async fn initialize_search(search: &mut Search) {
+        search.last_listing = match get_last_listing(search).await {
+            Some(l) => { Some(l.urn) },
+            None => { Some(String::new()) }
+        };
+    }
+
     async fn get_new_listings(search: &mut Search) -> Vec<Listing> {
         // Initialization of last listing
         if search.last_listing.is_none() {
-            search.last_listing = match get_last_listing(search).await {
-                Some(l) => { Some(l.urn) },
-                None => { Some(String::new()) }
-            };
+            initialize_search(search).await;
+            return Vec::new()
+        }
+        if !(check_listing_exists(search.last_listing.as_ref().unwrap()).await) {
+            initialize_search(search).await;
             return Vec::new()
         }
         let limit = get_new_listings_count(search).await;
